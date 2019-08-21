@@ -1,4 +1,4 @@
-package adapay.sanbox.model;
+package adapay.sandbox.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -8,11 +8,11 @@
         <version>2.1.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>adapay.sanbox</groupId>
-    <artifactId>sanbox-java</artifactId>
+    <groupId>adapay.sandbox</groupId>
+    <artifactId>sandbox-java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sanbox-java</name>
-    <description>adapay sanbox java</description>
+    <name>sandbox-java</name>
+    <description>adapay sandbox java</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -27,13 +27,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-devtools</artifactId>-->
-        <!--            <scope>runtime</scope>-->
-        <!--            <optional>true</optional>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -45,9 +38,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>net.openhft</groupId>
-            <artifactId>compiler</artifactId>
-            <version>2.3.1</version>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
         </dependency>
         <dependency>
             <groupId>com.sun</groupId>
@@ -74,6 +67,7 @@
     </dependencies>
 
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.asciidoctor</groupId>
