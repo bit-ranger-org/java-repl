@@ -4,17 +4,15 @@ import adapay.sandbox.model.Output;
 import adapay.sandbox.model.Snippet;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
 import javax.tools.*;
-import java.io.*;
-import java.net.URL;
-import java.net.URLClassLoader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Locale;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author bin.zhang
@@ -31,21 +29,12 @@ public class JavaSnippetRepl {
 
     private int lineNumBefore;
 
-    private ThreadLocalPrintStream threadLocalPrintStream = new ThreadLocalPrintStream();
-
-    private PrintStream originSystemOut = System.out;
-
-    private URLClassLoader urlClassLoader;
-
     {
-        System.setOut(threadLocalPrintStream);
-
         File srcFile = new File(workDir + File.separator + "structure.tpl");
         try {
             codeStructure = FileUtils.readFileToString(srcFile, StandardCharsets.UTF_8);
             String[] lines = codeStructure.split("\r\n|\r|\n");
             lineNumBefore = lines.length - 3;
-            urlClassLoader = new URLClassLoader(new URL[]{new URL("file:" + workDir + File.separator + "classes" + File.separator)});
         } catch (IOException e) {
             throw new RuntimeException("failed to read tpl, cause: " + e.getMessage());
         }
@@ -64,26 +53,17 @@ public class JavaSnippetRepl {
                 throw new RuntimeException(e);
             }
 
-            Output output = compile(srcFile);
+            Output outputCompile = compile(srcFile);
 
-            if (output.getStatus() != Output.Status.DONE) {
-                return output;
+            if (outputCompile.getStatus() != Output.Status.DONE) {
+                return outputCompile;
             }
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            PrintStream p = new PrintStream(baos);
-            Output.Status status = run(className, p);
-            String content = null;
-            try {
-                content = baos.toString(StandardCharsets.UTF_8.name());
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
-            return new Output(status, content);
+            return run(className);
         } finally {
             FileUtils.deleteQuietly(srcFile);
             File classFile = new File(workDir + File.separator + "classes" + File.separator + className + ".class");
-            FileUtils.deleteQuietly(classFile);
+//            FileUtils.deleteQuietly(classFile);
         }
     }
 
@@ -122,23 +102,40 @@ public class JavaSnippetRepl {
         }
     }
 
-    private Output.Status run(String className, PrintStream p) {
-        Runnable runnable = null;
+    private Output run(String className) {
+        ProcessBuilder builder = new ProcessBuilder(
+                "java",
+                "-jar",
+                "D:\\Doc\\GitRepo\\sandbox-java\\runner\\target\\runner-0.0.1-SNAPSHOT.jar",
+                className,
+                "1");
+        builder.redirectErrorStream(false);
+        builder.directory(new File(workDir));
+        Process process = null;
+        InputStream pi = null;
+        Output.Status status = null;
         try {
-            Class clz = Class.forName(className, true, urlClassLoader);
-            runnable = (Runnable) clz.newInstance();
+            process = builder.start();
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                pi = process.getInputStream();
+                status = Output.Status.DONE;
+            } else {
+                pi = process.getErrorStream();
+                status = Output.Status.EXCEPTION;
+            }
+            List<String> lines = IOUtils.readLines(pi, StandardCharsets.UTF_8);
+            log.debug(lines.toString());
+            return new Output(status, lines.toString());
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-        try {
-            threadLocalPrintStream.setPrintStream(p);
-            runnable.run();
-            return Output.Status.DONE;
-        } catch (Exception e) {
-            e.printStackTrace(p);
-            return Output.Status.EXCEPTION;
         } finally {
-            threadLocalPrintStream.setPrintStream(originSystemOut);
+            IOUtils.closeQuietly(pi);
+            if (process != null) {
+                process.destroy();
+            }
         }
+
+
     }
 }

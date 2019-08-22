@@ -20,7 +20,7 @@ public class SandboxJavaApplicationTests {
     @Test
     public void repl() {
 
-        Output output = javaSnippetRepl.repl(new Snippet(Snippet.Language.JAVA, "System.out.println(\"hello world\");"));
+        Output output = javaSnippetRepl.repl(new Snippet(Snippet.Language.JAVA, "System.out.println(\"hello world\");\ntry{Thread.sleep(6000);}catch(Exception e){}"));
         System.out.println(output);
     }
 
