@@ -1,6 +1,7 @@
-package adapay.sandbox.java;
+package adapay.sandbox.controller;
 
 
+import adapay.sandbox.java.JavaSnippetRepl;
 import adapay.sandbox.model.Output;
 import adapay.sandbox.model.Snippet;
 import lombok.extern.slf4j.Slf4j;

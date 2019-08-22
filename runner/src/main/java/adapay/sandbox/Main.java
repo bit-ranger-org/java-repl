@@ -13,10 +13,13 @@ import java.util.concurrent.TimeoutException;
 public class Main {
 
     public static void main(String[] args) {
-        Mono.just(args[2])
+        String classDir = args[0];
+        String className = args[1];
+        long timeoutSeconds = Long.parseLong(args[2]);
+        Mono.just(className)
                 .publishOn(Schedulers.immediate())
-                .doOnNext(new JavaClassRunner(args[1])::run)
-                .timeout(Duration.ofSeconds(Long.valueOf(args[0])))
+                .doOnNext(new JavaClassRunner(classDir)::run)
+                .timeout(Duration.ofSeconds(timeoutSeconds))
                 .doOnError(
                         e -> e instanceof TimeoutException,
                         e -> {

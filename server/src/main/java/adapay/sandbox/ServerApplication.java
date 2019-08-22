@@ -1,5 +1,6 @@
 package adapay.sandbox;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,11 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author bin.zhang
  */
 @SpringBootApplication
-public class SandboxApplication {
+@Slf4j
+public class ServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SandboxApplication.class, args);
-        System.out.println("adapay sandbox started");
+        SpringApplication.run(ServerApplication.class, args);
+        log.info("adapay sandbox server started");
     }
 
 

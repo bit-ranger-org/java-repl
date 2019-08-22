@@ -4,16 +4,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+/**
+ * @author bin.zhang
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Output {
 
     private Status status;
-    private String content;
+    private List<String> output;
+    private List<String> error;
 
     public enum Status {
-        DONE,
+        SUCCESS,
         COMPILE_FAILURE,
         EXCEPTION
     }
