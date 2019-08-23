@@ -18,6 +18,8 @@ public class SandboxProperties {
 
     private String runnerJarPath;
 
+    private int serverTimeoutSeconds;
+
     private int runnerTimeoutSeconds;
 
     private List<String> runnerJvmOptions;

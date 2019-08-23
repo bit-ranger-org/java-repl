@@ -6,6 +6,7 @@ import adapay.sandbox.model.Snippet;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,6 @@ public class JavaSnippetRepl implements InitializingBean {
             if (outputCompile.getStatus() != Output.Status.SUCCESS) {
                 return outputCompile;
             }
-
             return run(className);
         } finally {
             FileUtils.deleteQuietly(srcFile);
@@ -125,7 +125,23 @@ public class JavaSnippetRepl implements InitializingBean {
             pie = process.getErrorStream();
             List<String> ol = IOUtils.readLines(pio, StandardCharsets.UTF_8);
             List<String> oe = IOUtils.readLines(pie, StandardCharsets.UTF_8);
-            return new Output(status, ol, oe);
+
+            String stackTraceDisplayRoot = String.format("at %s.run(%s.java:", className, className);
+            List<String> olDisplay = new ArrayList<>();
+            List<String> oeDisplay = new ArrayList<>();
+            for (String l : ol) {
+                if (StringUtils.startsWith(StringUtils.strip(l), stackTraceDisplayRoot)) {
+                    break;
+                }
+                olDisplay.add(l);
+            }
+            for (String l : oe) {
+                if (StringUtils.startsWith(StringUtils.strip(l), stackTraceDisplayRoot)) {
+                    break;
+                }
+                oeDisplay.add(l);
+            }
+            return new Output(status, olDisplay, oeDisplay);
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -134,8 +150,6 @@ public class JavaSnippetRepl implements InitializingBean {
                 process.destroy();
             }
         }
-
-
     }
 
     @Override

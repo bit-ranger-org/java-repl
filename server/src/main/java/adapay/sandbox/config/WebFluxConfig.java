@@ -1,5 +1,7 @@
 package adapay.sandbox.config;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +12,12 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.server.session.CookieWebSessionIdResolver;
 import org.springframework.web.server.session.WebSessionIdResolver;
+import reactor.core.publisher.Hooks;
 
 import javax.annotation.Resource;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.function.Consumer;
 
 /**
  * @author bin.zhang
@@ -22,7 +26,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 @RestControllerAdvice
 @Configuration
 @EnableWebFlux
-public class WebFluxConfig implements WebFluxConfigurer {
+@Slf4j
+public class WebFluxConfig implements WebFluxConfigurer, InitializingBean {
 
     @Resource
     private SandboxProperties sandboxProperties;
@@ -45,5 +50,15 @@ public class WebFluxConfig implements WebFluxConfigurer {
     @Bean(destroyMethod = "shutdown")
     ThreadPoolExecutor replThreadPoolExecutor() {
         return new ScheduledThreadPoolExecutor(32, new CustomizableThreadFactory("repl-pool-"));
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        Consumer<? super Throwable> hook = e -> {
+            if (!(e.getCause() != null && e.getCause() instanceof InterruptedException)) {
+                log.error("Operator called default onErrorDropped", e);
+            }
+        };
+        Hooks.onErrorDropped(hook);
     }
 }

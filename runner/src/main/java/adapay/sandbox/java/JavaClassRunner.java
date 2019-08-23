@@ -27,7 +27,7 @@ public class JavaClassRunner {
             Class clz = Class.forName(className, true, urlClassLoader);
             runnable = (Runnable) clz.newInstance();
             runnable.run();
-        } catch (Exception e) {
+        } catch (Exception | OutOfMemoryError e) {
             e.printStackTrace();
             System.exit(1);
         }

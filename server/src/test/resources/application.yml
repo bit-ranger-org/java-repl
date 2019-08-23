@@ -13,6 +13,7 @@ spring:
 sandbox:
   work-dir: "D:\\Download\\sandbox-java"
   runner-jar-path: "D:\\Doc\\GitRepo\\sandbox-java\\runner\\target\\runner-0.0.1-SNAPSHOT.jar"
+  server-timeout-seconds: 8
   runner-timeout-seconds: 5
   runner-jvm-options:
     - "-XX:+UseConcMarkSweepGC"
