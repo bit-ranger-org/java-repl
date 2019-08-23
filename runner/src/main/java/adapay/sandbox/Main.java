@@ -23,7 +23,7 @@ public class Main {
                 .doOnError(
                         e -> e instanceof TimeoutException,
                         e -> {
-                            System.err.println(String.format("ERROR over time limit %s seconds", args[0]));
+                            System.err.println(String.format("ERROR over time limit %s seconds", timeoutSeconds));
                             System.exit(2);
                         })
                 .subscribe();
