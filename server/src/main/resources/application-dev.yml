@@ -28,5 +28,8 @@ sandbox:
     - "-XX:SurvivorRatio=1"
     - "-XX:+DisableExplicitGC"
     - "-Xnoclassgc"
+  cors:
+    allowed-origins:
+      - "http://localhost:8081"
 
 

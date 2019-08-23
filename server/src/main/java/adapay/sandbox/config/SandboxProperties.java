@@ -21,4 +21,12 @@ public class SandboxProperties {
     private int runnerTimeoutSeconds;
 
     private List<String> runnerJvmOptions;
+
+    private Cors cors;
+
+    @Data
+    public static class Cors {
+
+        private List<String> allowedOrigins;
+    }
 }
