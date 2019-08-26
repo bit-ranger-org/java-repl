@@ -22,13 +22,14 @@ sandbox:
   runner-timeout-seconds: 5
   runner-jvm-options:
     - "-XX:+UseConcMarkSweepGC"
-    - "-Xms4m"
-    - "-Xmx4m"
-    - "-Xmn3m"
-    - "-Xss1m"
+    - "-Xms6m"
+    - "-Xmx6m"
+    - "-Xmn4m"
+    - "-Xss2m"
     - "-XX:SurvivorRatio=1"
     - "-XX:+DisableExplicitGC"
     - "-Xnoclassgc"
+    - "-Dfile.encoding=UTF-8"
   cors:
     allowed-origins:
       - "*"

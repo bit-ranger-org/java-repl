@@ -16,6 +16,7 @@ public class Main {
         String classDir = args[0];
         String className = args[1];
         long timeoutSeconds = Long.parseLong(args[2]);
+
         Mono.just(className)
                 .publishOn(Schedulers.immediate())
                 .doOnNext(new JavaClassRunner(classDir)::run)
@@ -26,6 +27,13 @@ public class Main {
                             System.err.println(String.format("ERROR over time limit %s seconds", timeoutSeconds));
                             System.exit(2);
                         })
+                .doOnError(e -> !(e instanceof TimeoutException),
+                        e -> {
+                            e.getCause().printStackTrace();
+                            System.exit(1);
+                        })
                 .subscribe();
+
+        System.exit(0);
     }
 }
