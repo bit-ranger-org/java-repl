@@ -5,12 +5,23 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST http://localhost:8081/v1/repl/java/snippet
+POST http://172.31.19.46:8081/v1/repl/java/snippet
 Content-Type: application/json
 
 {
   "language": "JAVA",
-  "content": "System.out.println(\"aaa\");"
+  "content": "HashMap map = new HashMap();"
+}
+
+###
+
+
+POST http://172.31.19.46:8081/v1/repl/java/snippet
+Content-Type: application/json
+
+{
+  "language": "JAVA",
+  "content": "AdaPay.apiKey = \"api_live_922691d7-85f4-49ee-9580-c71649434312\";Map<String, Object> chargeParams = new HashMap<String, Object>(7);chargeParams.put(\"order_no\", \"jsdk_charge_\"+System.currentTimeMillis());chargeParams.put(\"pay_channel\", PayChannelEnum.ALIPAY_QR.getCode());chargeParams.put(\"amount\", \"0.01\");chargeParams.put(\"subject\", \"your goods subject\");chargeParams.put(\"body\", \"your goods body\");Charge charge = Charge.create(chargeParams);"
 }
 
 ###

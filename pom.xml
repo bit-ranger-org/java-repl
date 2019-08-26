@@ -40,6 +40,11 @@
                 <version>1.0.manual</version>
                 <scope>compile</scope>
             </dependency>
+            <dependency>
+                <groupId>com.huifu.adapay</groupId>
+                <artifactId>adapay-java-sdk</artifactId>
+                <version>1.0.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

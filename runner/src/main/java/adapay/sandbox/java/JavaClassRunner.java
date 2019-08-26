@@ -14,7 +14,7 @@ public class JavaClassRunner {
 
     public JavaClassRunner(String classDir) {
         try {
-            urlClassLoader = new URLClassLoader(new URL[]{new URL("file:" + classDir + File.separator)});
+            urlClassLoader = new URLClassLoader(new URL[]{new URL("file:" + classDir + File.separator)}, this.getClass().getClassLoader());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
