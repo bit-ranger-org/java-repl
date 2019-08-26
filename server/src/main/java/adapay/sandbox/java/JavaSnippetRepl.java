@@ -34,6 +34,8 @@ public class JavaSnippetRepl implements InitializingBean {
 
     private int lineNumBefore;
 
+    private String classpath;
+
 
     public Output repl(Snippet snippet) {
 
@@ -71,7 +73,11 @@ public class JavaSnippetRepl implements InitializingBean {
                     null,
                     fileManager,
                     diagnostics,
-                    Arrays.asList("-d", sandboxProperties.getWorkDir() + File.separator + "classes"),
+                    Arrays.asList(
+                            "-d",
+                            sandboxProperties.getWorkDir() + File.separator + "target",
+                            "-classpath",
+                            classpath),
                     null,
                     compilationUnits);
             task.setLocale(Locale.ENGLISH);
@@ -103,7 +109,7 @@ public class JavaSnippetRepl implements InitializingBean {
         commands.addAll(sandboxProperties.getRunnerJvmOptions());
         commands.add("-jar");
         commands.add(sandboxProperties.getRunnerJarPath());
-        commands.add(sandboxProperties.getWorkDir() + File.separator + "classes");
+        commands.add(sandboxProperties.getWorkDir() + File.separator + "target");
         commands.add(className);
         commands.add(String.valueOf(sandboxProperties.getRunnerTimeoutSeconds()));
         ProcessBuilder builder = new ProcessBuilder(commands);
@@ -162,5 +168,14 @@ public class JavaSnippetRepl implements InitializingBean {
         } catch (IOException e) {
             throw new RuntimeException("failed to read tpl, cause: " + e.getMessage());
         }
+        List<String> classpathList = new ArrayList<>();
+        String classesDir = sandboxProperties.getWorkDir() + File.separator + "classes";
+        classpathList.add(classesDir);
+        String libDir = sandboxProperties.getWorkDir() + File.separator + "lib";
+        Collection<File> jars = FileUtils.listFiles(new File(libDir), new String[]{"jar"}, false);
+        jars.forEach(f -> classpathList.add(f.getPath()));
+
+        classpath = StringUtils.join(classpathList, ";");
+
     }
 }
