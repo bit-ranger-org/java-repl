@@ -13,6 +13,7 @@ public class ServerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);
+        log.info(String.format("java.home=%s", System.getProperty("java.home")));
         log.info("adapay sandbox server started");
     }
 
