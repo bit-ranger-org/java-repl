@@ -43,7 +43,7 @@ public class JavaController implements InitializingBean {
     public Mono<Output> post(@RequestBody Mono<Snippet> snippet) {
         return snippet.publishOn(scheduler)
                 .map(s -> javaSnippetReplService.repl(s))
-                .timeout(Duration.ofSeconds(sandboxProperties.getServerTimeoutSeconds()))
+                .timeout(Duration.ofSeconds(sandboxProperties.getServer().getTimeoutSeconds()))
                 .doOnError(e -> !(e instanceof TimeoutException), e -> log.error("repl error", e))
                 .onErrorMap(e -> e instanceof TimeoutException || e.getCause() instanceof InterruptedException,
                         e -> new ResponseStatusException(HttpStatus.REQUEST_TIMEOUT, HttpStatus.REQUEST_TIMEOUT.getReasonPhrase()));

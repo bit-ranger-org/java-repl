@@ -1,3 +1,8 @@
+server:
+  port: 8081
+  error:
+    path: /error
+
 spring:
   main:
     web-application-type: reactive
@@ -12,20 +17,26 @@ spring:
 
 sandbox:
   work-dir: "D:\\Download\\sandbox-java"
-  runner-jar-path: "D:\\Doc\\GitRepo\\sandbox-java\\runner\\target\\runner-0.0.1-SNAPSHOT.jar"
-  server-timeout-seconds: 8
-  runner-timeout-seconds: 5
-  runner-jvm-options:
-    - "-XX:+UseConcMarkSweepGC"
-    - "-Xms4m"
-    - "-Xmx4m"
-    - "-Xmn3m"
-    - "-Xss1m"
-    - "-XX:SurvivorRatio=1"
-    - "-XX:+DisableExplicitGC"
-    - "-Xnoclassgc"
+  server:
+    timeout-seconds: 8
+  runner:
+    jar-path: "D:\\Doc\\GitRepo\\sandbox-java\\runner\\target\\runner-0.0.1-SNAPSHOT.jar"
+    timeout-seconds: 5
+    number-max: 32
+    jvm-options:
+      - "-XX:+UseConcMarkSweepGC"
+      - "-Xms6m"
+      - "-Xmx6m"
+      - "-Xmn4m"
+      - "-Xss2m"
+      - "-XX:SurvivorRatio=1"
+      - "-XX:+DisableExplicitGC"
+      - "-Xnoclassgc"
+      - "-Dfile.encoding=UTF-8"
+
+
   cors:
     allowed-origins:
-      - "http://localhost:8081"
+      - "*"
 
 

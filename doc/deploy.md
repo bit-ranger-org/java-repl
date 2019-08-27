@@ -1,6 +1,6 @@
 1. mvn package runner 打包成jar
 
-2. 修改 server/src/resources/application.yml 中 runner-jar-path
+2. 修改 server/src/resources/application.yml 中 runner.jar-path
 
 3. 修改 server/src/resources/application.yml 中 work-dir
 

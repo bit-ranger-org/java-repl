@@ -106,12 +106,12 @@ public class JavaSnippetRepl implements InitializingBean {
     private Output run(String className) {
         List<String> commands = new ArrayList<>();
         commands.add("java");
-        commands.addAll(sandboxProperties.getRunnerJvmOptions());
+        commands.addAll(sandboxProperties.getRunner().getJvmOptions());
         commands.add("-jar");
-        commands.add(sandboxProperties.getRunnerJarPath());
+        commands.add(sandboxProperties.getRunner().getJarPath());
         commands.add(sandboxProperties.getWorkDir() + File.separator + "target");
         commands.add(className);
-        commands.add(String.valueOf(sandboxProperties.getRunnerTimeoutSeconds()));
+        commands.add(String.valueOf(sandboxProperties.getRunner().getTimeoutSeconds()));
         ProcessBuilder builder = new ProcessBuilder(commands);
         builder.redirectErrorStream(false);
         builder.directory(new File(sandboxProperties.getWorkDir()));

@@ -16,15 +16,28 @@ public class SandboxProperties {
 
     private String workDir;
 
-    private String runnerJarPath;
+    private Server server;
 
-    private int serverTimeoutSeconds;
-
-    private int runnerTimeoutSeconds;
-
-    private List<String> runnerJvmOptions;
+    private Runner runner;
 
     private Cors cors;
+
+    @Data
+    public static class Server {
+        private int timeoutSeconds;
+    }
+
+    @Data
+    public static class Runner {
+
+        private int numberMax;
+
+        private String jarPath;
+
+        private int timeoutSeconds;
+
+        private List<String> jvmOptions;
+    }
 
     @Data
     public static class Cors {

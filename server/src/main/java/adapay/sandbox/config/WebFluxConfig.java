@@ -49,7 +49,7 @@ public class WebFluxConfig implements WebFluxConfigurer, InitializingBean {
 
     @Bean(destroyMethod = "shutdown")
     ThreadPoolExecutor replThreadPoolExecutor() {
-        return new ScheduledThreadPoolExecutor(32, new CustomizableThreadFactory("repl-pool-"));
+        return new ScheduledThreadPoolExecutor(sandboxProperties.getRunner().getNumberMax(), new CustomizableThreadFactory("repl-pool-"));
     }
 
     @Override
