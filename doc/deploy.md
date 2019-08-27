@@ -10,6 +10,8 @@
 
 6. 解压server.jar, 将lib放入work-dir, 将classes放入work-dir
 
-7. 启动server, java -jar server.jar --spring.profiles.active=dev
+7. 配置环境变量 JAVA_HOME=jdk根目录
+
+8. 启动server, java -jar server.jar --spring.profiles.active=dev
 
 
