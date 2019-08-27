@@ -15,4 +15,5 @@ chargeParams.put("amount", "0.01");
 chargeParams.put("subject", "your goods subject");
 chargeParams.put("body", "your goods body");
 chargeParams.put("app_id", "app_P000002052092068");
+chargeParams.put("currency", "cny");
 Charge charge = Charge.create(chargeParams);
