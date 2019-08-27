@@ -160,7 +160,7 @@ public class JavaSnippetRepl implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        File srcFile = new File(sandboxProperties.getWorkDir() + File.separator + "structure.tpl");
+        File srcFile = new File(sandboxProperties.getWorkDir() + File.separator + "structure.java");
         try {
             codeStructure = FileUtils.readFileToString(srcFile, StandardCharsets.UTF_8);
             String[] lines = codeStructure.split("\r\n|\r|\n");
