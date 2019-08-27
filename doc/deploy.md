@@ -10,4 +10,6 @@
 
 6. 解压server.jar, 将lib放入work-dir, 将classes放入work-dir
 
+7. 启动server, java -jar server.jar --spring.profiles.active=dev
+
 
