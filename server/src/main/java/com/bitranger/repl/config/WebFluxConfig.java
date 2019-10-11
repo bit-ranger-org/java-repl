@@ -43,7 +43,7 @@ public class WebFluxConfig implements WebFluxConfigurer, InitializingBean {
     @Bean
     WebSessionIdResolver cookieWebSessionIdResolver() {
         CookieWebSessionIdResolver cookieWebSessionIdResolver = new CookieWebSessionIdResolver();
-        cookieWebSessionIdResolver.setCookieName("ADAPAY_SANDBOX_SESSION_ID");
+        cookieWebSessionIdResolver.setCookieName("JAVA_REPL_SESSION_ID");
         return cookieWebSessionIdResolver;
     }
 
