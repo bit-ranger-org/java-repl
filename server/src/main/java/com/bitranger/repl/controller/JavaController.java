@@ -1,10 +1,10 @@
-package adapay.sandbox.controller;
+package com.bitranger.repl.controller;
 
 
-import adapay.sandbox.config.SandboxProperties;
-import adapay.sandbox.java.JavaSnippetRepl;
-import adapay.sandbox.model.Output;
-import adapay.sandbox.model.Snippet;
+import com.bitranger.repl.config.ReplProperties;
+import com.bitranger.repl.java.JavaSnippetRepl;
+import com.bitranger.repl.model.Output;
+import com.bitranger.repl.model.Snippet;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.http.HttpStatus;
@@ -35,7 +35,7 @@ public class JavaController implements InitializingBean {
     private ThreadPoolExecutor replThreadPoolExecutor;
 
     @Resource
-    private SandboxProperties sandboxProperties;
+    private ReplProperties sandboxProperties;
 
     private Scheduler scheduler;
 

@@ -1,4 +1,4 @@
-package adapay.sandbox.controller;
+package com.bitranger.repl.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

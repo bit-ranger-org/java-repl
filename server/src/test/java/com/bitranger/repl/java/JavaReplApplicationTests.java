@@ -1,25 +1,20 @@
-package adapay.sandbox.sanbox.java;
+package com.bitranger.repl.java;
 
-import adapay.sandbox.java.JavaSnippetRepl;
-import adapay.sandbox.model.Output;
-import adapay.sandbox.model.Snippet;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.bitranger.repl.model.Output;
+import com.bitranger.repl.model.Snippet;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
 @EnableConfigurationProperties
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class SandboxJavaApplicationTests {
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+public class JavaReplApplicationTests {
 
     @Resource
     private JavaSnippetRepl javaSnippetRepl;
 
-    @Test
+    //    @Test
     public void repl() {
 
         Output output = javaSnippetRepl.repl(new Snippet(Snippet.Language.JAVA, "System.out.println(\"hello world\");\ntry{Thread.sleep(6000);}catch(Exception e){}"));

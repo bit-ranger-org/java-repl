@@ -1,4 +1,4 @@
-package adapay.sandbox.config;
+package com.bitranger.repl.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -12,7 +12,7 @@ import java.util.List;
 @ConfigurationProperties(prefix = "sandbox")
 @Component
 @Data
-public class SandboxProperties {
+public class ReplProperties {
 
     private String workDir;
 

@@ -1,8 +1,8 @@
-package adapay.sandbox.java;
+package com.bitranger.repl.java;
 
-import adapay.sandbox.config.SandboxProperties;
-import adapay.sandbox.model.Output;
-import adapay.sandbox.model.Snippet;
+import com.bitranger.repl.config.ReplProperties;
+import com.bitranger.repl.model.Output;
+import com.bitranger.repl.model.Snippet;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -28,7 +28,7 @@ public class JavaSnippetRepl implements InitializingBean {
     private JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 
     @Resource
-    private SandboxProperties sandboxProperties;
+    private ReplProperties sandboxProperties;
 
     private String codeStructure;
 
@@ -166,7 +166,7 @@ public class JavaSnippetRepl implements InitializingBean {
             String[] lines = codeStructure.split("\r\n|\r|\n");
             lineNumBefore = lines.length - 3;
         } catch (IOException e) {
-            throw new RuntimeException("failed to read tpl, cause: " + e.getMessage());
+            throw new RuntimeException("failed to read structure.java, cause: " + e.getMessage());
         }
         List<String> classpathList = new ArrayList<>();
         String classesDir = sandboxProperties.getWorkDir() + File.separator + "classes";

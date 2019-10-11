@@ -11,7 +11,7 @@
 
 
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 /app/sv/logs -->
-    <property name="LOG_HOME" value="/app/sandbox/logs"/>
+    <property name="LOG_HOME" value="/app/java/repl/logs"/>
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -38,7 +38,7 @@
         </encoder>
     </appender>
 
-    <logger name="adapay.sandbox.ServerApplication" level="INFO" additivity="true">
+    <logger name="com.bitranger.repl.ServerApplication" level="INFO" additivity="true">
         <appender-ref ref="STDOUT"/>
     </logger>
     <logger name="org.springframework.boot.web.embedded.netty.NettyWebServer" level="INFO" additivity="true">

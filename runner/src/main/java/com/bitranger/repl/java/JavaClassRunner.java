@@ -1,4 +1,4 @@
-package adapay.sandbox.java;
+package com.bitranger.repl.java;
 
 import java.io.File;
 import java.net.MalformedURLException;

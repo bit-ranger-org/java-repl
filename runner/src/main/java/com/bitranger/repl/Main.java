@@ -1,6 +1,6 @@
-package adapay.sandbox;
+package com.bitranger.repl;
 
-import adapay.sandbox.java.JavaClassRunner;
+import com.bitranger.repl.java.JavaClassRunner;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 

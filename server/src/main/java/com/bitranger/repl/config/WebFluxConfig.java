@@ -1,4 +1,4 @@
-package adapay.sandbox.config;
+package com.bitranger.repl.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -30,7 +30,7 @@ import java.util.function.Consumer;
 public class WebFluxConfig implements WebFluxConfigurer, InitializingBean {
 
     @Resource
-    private SandboxProperties sandboxProperties;
+    private ReplProperties sandboxProperties;
 
 
     @Override

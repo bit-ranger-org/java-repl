@@ -16,11 +16,11 @@ spring:
       write-dates-as-timestamps: true
 
 sandbox:
-  work-dir: "D:\\Download\\sandbox-java"
+  work-dir: "C:\\Users\\bin.zhang\\Downloads\\java-repl"
   server:
     timeout-seconds: 8
   runner:
-    jar-path: "D:\\Doc\\GitRepo\\sandbox-java\\runner\\target\\runner-0.0.1-SNAPSHOT.jar"
+    jar-path: "C:\\Home\\Workspace\\repo\\java-repl\\runner\\target\\runner-0.0.1-SNAPSHOT.jar"
     timeout-seconds: 5
     number-max: 32
     jvm-options:

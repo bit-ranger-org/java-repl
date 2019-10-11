@@ -1,4 +1,4 @@
-package adapay.sandbox.model;
+package com.bitranger.repl.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

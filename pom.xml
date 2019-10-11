@@ -13,11 +13,11 @@
         <version>2.1.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>adapay.sandbox</groupId>
-    <artifactId>sandbox-java</artifactId>
+    <groupId>com.bitranger</groupId>
+    <artifactId>java-repl</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sandbox-java</name>
-    <description>adapay sandbox java</description>
+    <name>java-repl</name>
+    <description>java repl</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -33,17 +33,6 @@
                 <groupId>io.projectreactor</groupId>
                 <artifactId>reactor-core</artifactId>
                 <version>3.2.11.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>adapay.sdk</groupId>
-                <artifactId>adapay-java-sdk</artifactId>
-                <version>1.0.manual</version>
-                <scope>compile</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.huifu.adapay</groupId>
-                <artifactId>adapay-java-sdk</artifactId>
-                <version>1.0.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
