@@ -1,4 +1,4 @@
-package adapay.sanbox.model;
+package com.bitranger.repl.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,4 +17,6 @@ public class Snippet {
     public enum Language {
         JAVA
     }
+
+    private String content;
 }
