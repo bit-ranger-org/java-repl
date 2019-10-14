@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author bin.zhang
  */
-@ConfigurationProperties(prefix = "sandbox")
+@ConfigurationProperties(prefix = "repl")
 @Component
 @Data
 public class ReplProperties {

@@ -15,7 +15,7 @@ spring:
     serialization:
       write-dates-as-timestamps: true
 
-sandbox:
+repl:
   work-dir: "C:\\Users\\bin.zhang\\Downloads\\java-repl"
   server:
     timeout-seconds: 8

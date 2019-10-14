@@ -1,6 +1,14 @@
 ## java repl
 
-java 在线调试
+java 在线调试, 提交代码后, 系统将自动编译并运行代码
+
+本系统基于webflux, 为反应式web应用
+
+### 配置
+
+参考application-dev.yml
+
+### 部署
 
 1. mvn package runner 打包成jar
 
